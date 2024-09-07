@@ -36,7 +36,7 @@ export async function POST(request: Request) {
       } else {
         const hashedPassword = await bcryptjs.hash(password, 10);
         existingUserByEmail.password = hashedPassword;
-        existingUserByEmail.verfiyCodeExpiry = new Date(
+        existingUserByEmail.verifyCodeExpiry = new Date(
           new Date().getTime() + 60 * 60 * 1000
         );
         await existingUserByEmail.save();
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
         username: username,
         email: email,
         password: hashedPassword,
-        verfiyCodeExpiry: expiryDate,
+        verifyCodeExpiry: expiryDate,
         verifyCode: verifyCode,
         isAcceptingMessage: true,
         messages: [],
